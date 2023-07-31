@@ -10,7 +10,7 @@ titlenum = int(sys.argv[3])  # Antal extra rubriker
 # Kräver en URI som ett minimum
 if not uri:
     print("URI har inte specificerats.")
-    print("Kolla scriptets källkod")
+    print("Kolla scriptets kod")
 else:
     # Sätt standardvärden om inga angivna
     if not lines:
