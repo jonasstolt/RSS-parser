@@ -12,7 +12,7 @@ my $titlenum = $ARGV[2];    # Antal extra rubriker
 # Kräver en URI som ett minimum
 unless ($uri) {
     print "URI har inte specificerats.\n";
-    print "Kolla scriptets källkod\n";
+    print "Kolla scriptets kod\n";
     exit;
 }
 
