@@ -27,8 +27,8 @@ my $feed = XML::FeedPP->new($uri);
 my @entries = $feed->get_item();
 foreach my $item (@entries[0..$lines+$titlenum-1]) {
     my $title = $item->title;
-    $title =~ s/^.*?: //;        # Ta bort allt fram till och med det första ":" tecknet
-    $title =~ s/ SWISH: 0720312394//g;   # Ta bort den statiska texten i slutet
+    $title =~ s/^.*?: //;        # This removes everything til ":" and show the the rest of the title
+    $title =~ s/ SWISH: 0720312394//g;   # This remove some static text in the title 
     $title = decode_entities($title);   # Avkoda HTML-tecken
     print "$title\n";
 }
