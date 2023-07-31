@@ -7,7 +7,7 @@ titlenum=$3        # Number of extra titles
 # Script start
 # Require a URI, as a minimum
 if [[ "$uri" == "" ]]; then
-    echo "No URI specified, cannot continue!" >&2
+    echo "No URI specified" >&2
     echo "Please read the script for more information" >&2
 else
     # Set defaults if none specified
