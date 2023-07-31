@@ -1,5 +1,6 @@
 local http = require("socket.http")
 local ltn12 = require("ltn12")
+local htmlEntities = require("htmlEntities")  -- Load the htmlEntities module
 
 local uri = arg[1]        -- URI of RSS Feed
 local lines = tonumber(arg[2])      -- Number of headlines
@@ -22,24 +23,7 @@ function fetch_rss(uri)
     return table.concat(response)
 end
 
--- Try to decode HTML entities
-function decode_html_entities(input)
-    local entities = {
-        quot = '"',
-        apos = "'",
-        lt = "<",
-        gt = ">",
-        amp = "&",
-        ['#x201C'] = '"',  -- Hexadecimal encoding for left double quotation mark
-        ['#x201D'] = '"',  -- Hexadecimal encoding for right double quotation mark
-        ['#8220'] = '"',   -- Decimal encoding for left double quotation mark
-        ['#8221'] = '"',   -- Decimal encoding for right double quotation mark
-    }
-
-    return input:gsub("&(%a+);", entities)
-end
-
-
+-- Script start
 if uri == nil or uri == "" then
     io.stderr:write("You need to specify a URI\n")
 else
@@ -50,7 +34,7 @@ else
     local titles = {}
 
     for title in rss_content:gmatch("<title>(.-)</title>") do
-        title = decode_html_entities(title)
+        title = htmlEntities.decode(title)  -- Use the htmlEntities module's decode function
         table.insert(titles, title)
     end
 
