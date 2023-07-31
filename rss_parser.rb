@@ -20,7 +20,7 @@ else
     rss_content = URI.open(uri).read
     feed = RSS::Parser.parse(rss_content)
 
-    # Processa rubrikerna
+    # Process rubrikerna
     feed.items.first(lines + titlenum).each do |item|
         title = item.title.split(" - ", 2).last
         title = title[15..-1]  # Ta bort de 15 första tecknen
