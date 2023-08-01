@@ -4,31 +4,27 @@ use warnings;
 use XML::FeedPP;
 use HTML::Entities;
 
-my $uri = $ARGV[0];         # URI för RSS-flöde
-my $lines = $ARGV[1];       # Antal rubriker
-my $titlenum = $ARGV[2];    # Antal extra rubriker
+my $uri = $ARGV[0];         # URI 
+my $lines = $ARGV[1];       # Num titles
+my $titlenum = $ARGV[2];    # Num extra titles
 
-# Skriptets start
-# Kräver en URI som ett minimum
+# Require URI
 unless ($uri) {
-    print "URI har inte specificerats.\n";
-    print "Kolla scriptets kod\n";
+    print "URI neede\n";
     exit;
 }
 
-# Sätt standardvärden om inga angivna
+# Set defaults if $lines and/or $titlenum missing
 $lines ||= 5;
 $titlenum ||= 2;
 
-# Hämta RSS-flödet
+# Get RSS feed
 my $feed = XML::FeedPP->new($uri);
 
-# Bearbeta rubrikerna
+# Process
 my @entries = $feed->get_item();
 foreach my $item (@entries[0..$lines+$titlenum-1]) {
     my $title = $item->title;
-    $title =~ s/^.*?: //;        # This removes everything til ":" and show the the rest of the title
-    $title =~ s/ SWISH: 0720312394//g;   # This remove some static text in the title 
-    $title = decode_entities($title);   # Avkoda HTML-tecken
+    $title = decode_entities($title); 
     print "$title\n";
 }
