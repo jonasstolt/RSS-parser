@@ -2,29 +2,24 @@
 require 'rss'
 require 'open-uri'
 
-uri = ARGV[0]            # URI för RSS-flöde
-lines = ARGV[1].to_i     # Antal rubriker
-titlenum = ARGV[2].to_i  # Antal extra rubriker
+uri = ARGV[0]            # URI
+lines = ARGV[1].to_i     # Num titles
+titlenum = ARGV[2].to_i  # Nu extra titles
 
-# Skriptets start
-# Kräver en URI som ett minimum
+# Require URI
 if uri.nil? || uri.empty?
-    puts "URI har inte specificerats."
-    puts "Kolla scriptets källkod"
+    puts "URI needed"
 else
-    # Sätt standardvärden om inga angivna
+    # Set defaults
     lines = 5 if lines.zero?
     titlenum = 2 if titlenum.zero?
 
-    # Hämta RSS-flödet
+    # Get RSS
     rss_content = URI.open(uri).read
     feed = RSS::Parser.parse(rss_content)
 
-    # Process rubrikerna
+    # Process titles
     feed.items.first(lines + titlenum).each do |item|
-        title = item.title.split(" - ", 2).last
-        title = title[15..-1]  # Ta bort de 15 första tecknen
-        title = title.gsub(" SWISH: 0720312394", "") # Sorry, det tar onödig plats
-        puts titleS
+        puts title
     end
 end
