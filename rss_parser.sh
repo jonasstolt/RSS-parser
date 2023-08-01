@@ -4,7 +4,6 @@ uri=$1             # URI of RSS Feed
 lines=$2           # Number of headlines
 titlenum=$3        # Number of extra titles
 
-# Script start
 # Require a URI, as a minimum
 if [[ "$uri" == "" ]]; then
     echo "No URI specified" >&2
