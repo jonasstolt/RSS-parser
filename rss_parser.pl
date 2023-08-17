@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+#
+# Require perl-xml-libxml
+#
+#
 use strict;
 use warnings;
 use XML::FeedPP;
