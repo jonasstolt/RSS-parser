@@ -1,8 +1,12 @@
 #!/usr/bin/env perl
-#
-# Require perl-xml-libxml
-#
-#
+# ---
+# You might need to install XML::LibXML or XML::FeedPP
+# The easiest way is to use cpanminus. Install with yay:
+# yay -S cpanminus
+# Install module(s)
+# cpanm XML::LibXML)
+# ---
+
 use strict;
 use warnings;
 use XML::FeedPP;
